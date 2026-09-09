@@ -1,6 +1,6 @@
 # Confluence Scan — <Feature or area>
 
-**Status:** Draft / Complete / Unavailable  
+**Status:** Draft / Complete / Unavailable (Unavailable = pipeline blocked; see change log for the access issue and resolution)  
 **Source ask:** <inbox link>  
 **Search date:** <YYYY-MM-DD>  
 **BA initials:** <XX>

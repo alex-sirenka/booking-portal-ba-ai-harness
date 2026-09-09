@@ -26,7 +26,7 @@ Each role has its own registered custom agent under `../agents/<name>.agent.md` 
 - Enforce the hand-off contract (what I did / what I found / what I'm passing forward / what stopped me) on yourself at every phase.
 - **Stop and escalate** when:
   - The ask is ambiguous → ask one question.
-  - A Confluence page Intake flagged as authoritative cannot be retrieved → request access or its relevant content. General Confluence unavailability is recorded and the pipeline continues.
+  - Confluence is unavailable for any reason (tool not registered, authentication failure, network/server error) → stop before Repo-Scout, report the reason, and wait for the BA to fix access. Do not proceed with an `Unavailable` scan, whether or not a specific page was flagged as authoritative.
   - Repo-Scout can't find the feature → ask for another name.
   - Impact spans more than three feature areas → suggest splitting.
   - Gap-Analyst surfaces blockers → do NOT proceed to story drafting.

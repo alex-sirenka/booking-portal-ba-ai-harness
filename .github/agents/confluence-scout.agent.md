@@ -57,8 +57,8 @@ Before returning, self-check this output against the Confluence-scan checklist i
 
 ## Stop conditions
 
-- If Confluence is unavailable or authentication fails, create the artifact with status `Unavailable`, record the reason, and allow the pipeline to continue with an explicit evidence gap. This is a normal, passing outcome, not a defect to rerun.
-- If Intake flagged a specific Confluence page as authoritative and that page cannot be retrieved, report a blocker to the Orchestrator.
+- If Confluence is unavailable or authentication fails for any reason, still save the artifact with status `Unavailable` and the specific reason (for the record), but treat this as a **blocker**, not a passing outcome: report it to the Orchestrator so the pipeline stops before Repo-Scout. Do not attempt a broadened search once access itself has failed.
+- If Intake flagged a specific Confluence page as authoritative and that page cannot be retrieved, report a blocker to the Orchestrator (same stop behavior as general unavailability).
 - If search results are broad or ambiguous, document the search boundary and likely page candidates; do not infer their contents.
 
 ## What this agent does NOT do

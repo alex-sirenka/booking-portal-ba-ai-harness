@@ -29,7 +29,7 @@ Detect the artifact type from filename / location, then run the matching checkli
 8. **Assumptions marked** — inferred or uncertain conclusions are explicit and include a validation route.
 9. **Conflicts preserved** — contradictions between documentation, stakeholder asks, and implementation remain visible until an authoritative decision resolves them.
 10. **Recommendations separated** — recommendations are not written as approved requirements.
-11. **Confluence evidence** — feature/change pipelines include a Confluence scan or an explicit `Unavailable` artifact. Sources use page key/title without URLs; search scope, retrieval date, freshness, and authority are visible. Confluence evidence is not used to prove Current Implementation.
+11. **Confluence evidence** — feature/change pipelines include a genuinely completed Confluence scan; an `Unavailable` scan is a pipeline blocker, not an acceptable input to downstream analysis. If downstream artifacts (repo scan, impact assessment, gap analysis, story) exist alongside an `Unavailable` Confluence scan, flag this as a process violation — the pipeline should have stopped before producing them. Sources use page key/title without URLs; search scope, retrieval date, freshness, and authority are visible. Confluence evidence is not used to prove Current Implementation.
 
 ### User-story checks
 
@@ -76,7 +76,7 @@ Detect the artifact type from filename / location, then run the matching checkli
 36. **Source identity** — every used source has a page key and title; no Confluence URL is included.
 37. **Freshness and authority** — search date, page last-modified date when available, and approval authority/status are explicit.
 38. **Evidence boundary** — findings are classified as Documented Behaviour, Approved Requirement, Historical Context, Conflict, or Evidence Gap; none are presented as Current Implementation.
-39. **Unavailable behavior** — an unavailable scan records attempted scope and reason; an inaccessible specifically named authoritative page is treated as a blocker.
+39. **Unavailable behavior** — an unavailable scan records attempted scope and reason and is always treated as a blocker requiring the BA to fix access, regardless of whether a specific page was flagged as authoritative.
 
 ### Release-notes checks
 

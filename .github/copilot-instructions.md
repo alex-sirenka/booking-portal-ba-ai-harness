@@ -24,7 +24,7 @@ The user is a **Business Analyst**. Default to BA framing (business language, us
 
 - Curated summary: `.github/references/` (product-overview, service-map, frontend-map, integration-map, workflows, personas, glossary). Read these first for grounding.
 - Canonical: the code. When in doubt, search the repo.
-- ADNOC Confluence: search during every full feature/change pipeline before repository analysis. Treat retrieved content as Documented Behaviour, Historical Context, or Approved Requirement only when explicit authority is recorded; never as proof of Current Implementation. Cite page keys and titles without URLs.
+- ADNOC Confluence: search during every full feature/change pipeline before repository analysis. Confluence unavailability for any reason is a pipeline blocker — the Orchestrator stops and asks the BA to fix access before continuing (see `.github/agents/orchestrator.agent.md`). Treat retrieved content as Documented Behaviour, Historical Context, or Approved Requirement only when explicit authority is recorded; never as proof of Current Implementation. Cite page keys and titles without URLs.
 - Don't invent class names, endpoint URLs, env vars, or domain terms. If you can't find it, say so and point at where it would live.
 - Ground project-specific conclusions in project evidence. Keep current implementation, documented behaviour, requested target, approved requirement, assumption, recommendation, and conflict distinct.
 - A stakeholder request describes a requested target; treat it as approved only when an authoritative source explicitly confirms approval.

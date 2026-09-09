@@ -37,7 +37,7 @@ user-invocable: false
 
 6. **Record negative evidence carefully.** List searches that produced no relevant result. Say `Not found in searched Confluence scope`, not `Confluence has no documentation`.
 
-7. **Handle access failure.** If authentication or page access fails, save an `Unavailable` scan with the failed scope and reason. Continue unless the ask names that page as authoritative.
+7. **Handle access failure.** If authentication or page access fails, save an `Unavailable` scan with the failed scope and reason. This is a **blocker** — report it so the Orchestrator stops the pipeline before Repo-Scout, regardless of whether the ask named a specific page as authoritative.
 
 8. **Save the artifact.** Use `.github/templates/confluence-scan.md` and save to `.github/ba-outputs/analyses/confluence-scans/<slug>.md`. Keep it under 500 words; summarize and offer to deep-dive a section rather than reproducing page content.
 
@@ -52,7 +52,7 @@ user-invocable: false
 ## Stop conditions
 
 - A page Intake flagged as explicitly authoritative cannot be retrieved: return `blocked` and identify the page key/title and access problem.
-- General Confluence search is unavailable: save an `Unavailable` artifact and continue with an explicit evidence gap — this is a valid, passing result.
+- Confluence is unavailable for any reason — tool not registered, authentication failure, network/server error: save an `Unavailable` artifact and return `blocked`. This stops the pipeline before Repo-Scout; it is not a result to silently continue past.
 - Search results remain ambiguous after one broader search: record likely candidates and continue without asserting their content.
 
 ## What this skill does NOT do

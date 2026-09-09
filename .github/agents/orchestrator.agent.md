@@ -36,6 +36,7 @@ The Orchestrator routes a raw stakeholder ask through the right pipeline of cust
 
    - **Intake** → reuse the classification output from step 2; do not invoke Intake twice.
    - **Confluence-Scout** → documented behaviour, decisions, ownership, and constraints. Invoke `confluence-scout` with the source ask and Intake output, including any page Intake flagged as authoritative.
+   - **Confluence availability gate (hard blocker).** If Confluence-Scout reports status `Unavailable` for any reason — tool not registered, authentication failure, network/server error — **stop immediately**. Do not invoke Repo-Scout or any later phase. Tell the BA plainly: "Confluence is not accessible (<reason>). This pipeline requires Confluence access before continuing. Please fix access (e.g., enable/authenticate the Atlassian MCP server) and ask me to retry." Resume the pipeline from Confluence-Scout, not from the beginning, once the BA confirms access is fixed.
    - **Repo-Scout** → current implementation. Invoke `repo-scout` with Intake's output and the Confluence scan. Require it to compare documentation with code without treating documentation as implementation evidence.
    - **Impact-Assessor** → what changes. Invoke `impact-assessor` with the source ask, Confluence scan, and repo-scan.
    - **Gap-Analyst** → blockers / missing info / risks. Invoke `gap-analyst` with all analysis artifacts, including the Confluence scan.
@@ -68,7 +69,7 @@ The Orchestrator's job is to *enforce* the hand-off contract on every other agen
 
 - The ask is too vague to classify (e.g., "make booking better"). Stop and ask one focused question.
 - Repo-Scout can't find the feature. Stop and ask if the BA has another name for it.
-- A Confluence page Intake flagged as authoritative cannot be retrieved. Stop and request access or the relevant content. General Confluence unavailability is recorded and does not stop the pipeline.
+- Confluence is unavailable for any reason (tool not registered, authentication failure, network/server error), whether or not a specific page was flagged as authoritative. Stop before Repo-Scout, report the reason, and wait for the BA to fix access before continuing. Never proceed to Repo-Scout with an `Unavailable` Confluence scan.
 - Impact spans more than three feature areas. Stop and suggest splitting the ask.
 - Gap-Analyst surfaces blockers. Stop and escalate (don't proceed to story drafting).
 - Quality-Checker fails twice in a row. Stop and surface the issue.
